@@ -1,0 +1,28 @@
+# Environment (contains secrets)
+.env
+
+# Local deployment notes
+DEPLOYMENT.local.md
+systemd/pikvm-keybow.service
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
