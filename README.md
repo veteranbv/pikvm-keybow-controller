@@ -69,12 +69,24 @@ nano .env
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `PIKVM_HOST` | PiKVM URL with protocol | `https://192.168.1.100` |
+| `PIKVM_HOST` | PiKVM HTTPS URL matching its certificate | `https://pikvm.example.net` |
 | `PIKVM_USER` | API username | `admin` |
 | `PIKVM_PASS` | API password | `secretpass` |
 | `TOTAL_PORTS` | Number of switch ports | `8` |
 
 > **Warning**: Never commit `.env` - it contains secrets and is gitignored.
+
+For HTTPS API requests, the controller verifies the certificate chain and hostname.
+For a private issuer, set `REQUESTS_CA_BUNDLE` in `.env` or the service environment
+to a readable PEM file containing the issuing CA certificates. Keep server
+private keys on the PiKVM. Publicly trusted certificates use Requests' default
+trust store. Untrusted or mismatched certificates cause an API error;
+configure the correct certificate and trust file before restarting the service.
+
+To run the TLS regression tests, install the existing `requests` dependency and
+OpenSSL, then run `python3 -m unittest discover -s tests -v`. The tests use a
+local HTTPS server and synthetic credentials. They do not initialize GPIO or
+send commands to a PiKVM.
 
 ## Hardware Notes
 

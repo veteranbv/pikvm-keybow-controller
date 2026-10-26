@@ -35,7 +35,6 @@ import sys
 import keybow
 import requests
 from requests.auth import HTTPBasicAuth
-import urllib3
 
 # Load .env file if present
 try:
@@ -43,9 +42,6 @@ try:
     load_dotenv()
 except ImportError:
     pass  # dotenv not installed, rely on environment variables
-
-# Disable SSL warnings for self-signed cert
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # =============================================================================
 # CONFIGURATION (from environment)
@@ -90,7 +86,7 @@ def get_current_port():
         resp = requests.get(
             f"{PIKVM_HOST}/api/switch",
             auth=HTTPBasicAuth(PIKVM_USER, PIKVM_PASS),
-            verify=False,
+            verify=True,
             timeout=5
         )
         data = resp.json()
@@ -106,7 +102,7 @@ def set_port(port):
         resp = requests.post(
             f"{PIKVM_HOST}/api/switch/set_active?port={port}",
             auth=HTTPBasicAuth(PIKVM_USER, PIKVM_PASS),
-            verify=False,
+            verify=True,
             timeout=5
         )
         return resp.status_code == 200
