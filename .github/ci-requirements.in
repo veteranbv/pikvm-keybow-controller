@@ -1,6 +1,6 @@
 # CI tools. Compile ci-requirements.txt from this file with:
 #   uv pip compile --generate-hashes --python-version 3.12 .github/ci-requirements.in -o .github/ci-requirements.txt
-ruff==0.14.9
+ruff==0.17.6
 pyyaml==6.0.4
 zizmor==1.33.0
 
