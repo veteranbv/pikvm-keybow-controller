@@ -1,0 +1,19 @@
+# Routine version updates. Security updates come from Dependabot alerts.
+# Reference: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+version: 2
+updates:
+  # Actions in .github/workflows, pinned by commit SHA.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+
+  # Hash-pinned CI tools (.github/ci-requirements.in and .txt).
+  - package-ecosystem: pip
+    directory: /.github
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
